@@ -1,0 +1,9 @@
+/env
+/.venv
+/infrastructure
+/knowledge_base
+/monitoring
+/docker
+/data
+/chroma_db
+/tests

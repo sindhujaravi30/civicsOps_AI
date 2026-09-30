@@ -1,0 +1,16 @@
+services:
+
+  postgres:
+    image: pgvector/pgvector:pg17
+    container_name: civicops-postgres
+    environment:
+      POSTGRES_USER: civicops
+      POSTGRES_PASSWORD: civicops
+      POSTGRES_DB: civicops
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
