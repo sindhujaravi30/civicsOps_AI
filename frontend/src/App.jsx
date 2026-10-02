@@ -1,15 +1,20 @@
 import Header from "./components/Header";
 import ApiStatus from "./components/ApiStatus";
+import Chat from "./components/Chat";
+
 import "./App.css";
 
 
 function App() {
   return (
     <div className="app">
+
       <Header />
 
       <main className="main-content">
+
         <section className="hero">
+
           <p className="eyebrow">
             Civic technology platform
           </p>
@@ -21,16 +26,23 @@ function App() {
           </h2>
 
           <p className="description">
-            CivicOps AI will provide bilingual,
-            reliable AI assistance for government
-            services and workflows.
+            CivicOps AI provides an extensible
+            foundation for bilingual AI-assisted
+            government services.
           </p>
+
         </section>
 
+
         <ApiStatus />
+
+        <Chat />
+
       </main>
+
     </div>
   );
 }
+
 
 export default App;

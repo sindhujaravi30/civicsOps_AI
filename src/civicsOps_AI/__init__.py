@@ -1,2 +1,2 @@
 def main() -> None:
-    print("Hello from workmate-ai!")
+    print("Hello from civicsOps-ai!")
