@@ -13,6 +13,9 @@ class Settings(BaseSettings):
 
     # Keep this configurable because Groq's available model catalog can change.
     groq_model: str = "openai/gpt-oss-120b"
+    database_url: str = (
+        "postgresql+asyncpg://postgres:postgres@localhost:5432/civicops"
+    )
 
     llm_timeout_seconds: float = 30.0
 

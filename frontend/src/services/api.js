@@ -1,6 +1,6 @@
 const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL ||
-  "http://127.0.0.1:8000";
+  "http://127.0.0.1:8001";
 
 
 async function handleResponse(response) {
@@ -34,6 +34,7 @@ export async function getHealth() {
 
 
 export async function sendChatMessage(
+  sessionId,
   message,
   conversation = []
 ) {
@@ -47,6 +48,7 @@ export async function sendChatMessage(
       },
 
       body: JSON.stringify({
+        session_id: sessionId,
         message,
         conversation,
       }),

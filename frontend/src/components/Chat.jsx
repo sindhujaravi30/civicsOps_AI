@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import { sendChatMessage } from "../services/api";
 
 
@@ -8,7 +7,8 @@ function Chat() {
   const [conversation, setConversation] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-
+  const SESSION_ID =
+  crypto.randomUUID();
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -24,6 +24,7 @@ function Chat() {
 
     try {
       const response = await sendChatMessage(
+        SESSION_ID,
         trimmedMessage,
         conversation
       );

@@ -1,7 +1,37 @@
+from contextlib import asynccontextmanager
+import logging
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from backend.app.api.routes.chat import router as chat_router
+from backend.app.db.session import init_db
+
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s %(levelname)s [%(name)s] %(message)s",
+)
+
+logger = logging.getLogger(__name__)
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    logger.info("Application startup: initializing database")
+    try:
+        await init_db()
+    except Exception:
+        logger.exception(
+            "Application startup failed during database initialization"
+        )
+        raise
+
+    logger.info("Application startup complete")
+    try:
+        yield
+    finally:
+        logger.info("Application shutdown")
 
 
 app = FastAPI(
@@ -11,6 +41,7 @@ app = FastAPI(
         "government service assistant."
     ),
     version="1.0.0",
+    lifespan=lifespan,
 )
 
 
@@ -28,6 +59,7 @@ app.add_middleware(
 
 @app.get("/api/v1/health")
 async def health_check():
+    logger.info("Health check request received")
     return {
         "status": "healthy",
         "service": "civicops-api",
